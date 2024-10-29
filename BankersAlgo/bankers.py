@@ -1,13 +1,13 @@
 def main():
     res = int(input("Resourse number = "))
-    instance = list(map(int, input("\nInstances = ").strip().split()))[:res]
+    instance = list(map(int, input("Instances = ").strip().split()))[:res]
     allocated = [0]*res
     safe_sequence = []
+    data = []
     
     # print(res, instance)
     
-    process = int(input("\nProcess number = "))
-    data = []
+    process = int(input("Process number = "))
     
     for i in range(process):
         arr = [0]*(res*3+2)
@@ -23,7 +23,7 @@ def main():
             allocated[j] += arr[res + j + 1]
         # print(allocated)
         arr[-1] = 'w'
-        print(arr)
+        # print(arr)
         data.append(arr)
     
     for i in range(res):
