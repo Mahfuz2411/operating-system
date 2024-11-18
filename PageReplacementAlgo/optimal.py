@@ -15,7 +15,7 @@ class Optimal:
         if n in self.arr:
             print("[", self.arr, ' H ]')
             self.hitCount += 1
-            return [n, 'H']
+            return [n, 'H'] 
 
 
         replace_idx = -1
