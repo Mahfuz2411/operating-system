@@ -20,39 +20,44 @@ class Optimal:
 
         replace_idx = -1
         if len(self.arr)>=self.frame:
-            temp : dict[int, int] = {}
-            cnt : int = 1
-            for d in self.arr:
-                temp[d] = 0
+            # temp : dict[int, int] = {}
+            # cnt : int = 1
+            temp: list[int] = []
+            # for d in self.arr:
+            #     temp[d] = 0
             for i in range(self.idx, len(self.ref)):
                 # print("23 ====> ", self.ref[i])
-                if self.ref[i] in self.arr: 
-                    cnt += 1
-                    temp[self.ref[i]] = (temp[self.ref[i]]+1) if (self.ref[i] in temp) else 1
+                if self.ref[i] in self.arr and self.ref[i] not in temp: 
+                    temp.append(self.ref[i])
+                    # cnt += 1
+                    # temp[self.ref[i]] = (temp[self.ref[i]]+1) if (self.ref[i] in temp) else 1
+            for d in self.arr:
+                if d not in temp:
+                    temp.append(d)
                 
-                
-                if cnt  == self.frame:
-                    break
+                # if cnt  == self.frame:
+                #     break
             
             
             
             # print("====>", temp)
-            min : list[int] = [-1]*2
-            for d in temp:
-                if min[1] == -1 or min[1]>=temp[d]:
-                    # print('=====> ', n, min[1], temp[d])
-                    min[0] = d
-                    min[1] = temp[d]
-                # elif min[1]>=temp[d]:
-                #     min[0] = d
-                #     min[1] = temp[d]
+            # min : list[int] = [-1]*2
+            # for d in temp:
+            #     if min[1] == -1 or min[1]>=temp[d]:
+            #         print('=====> ', n, min[1], temp[d])
+            #         min[0] = d
+            #         min[1] = temp[d]
+            #     elif min[1]>=temp[d]:
+            #         min[0] = d
+            #         min[1] = temp[d]
+            
             
             
             # print(n, min[0])
             # ext: int = self.arr.pop(0)
             # self.mp[ext] = 0
             # self.arr.remove(min[0])
-            replace_idx = self.arr.index(min[0])
+            replace_idx = self.arr.index(temp.pop())
             self.arr[replace_idx] = n
             # print("Replace idx: ", replace_idx)
         
@@ -64,7 +69,7 @@ class Optimal:
         print("[", self.arr,' M ]')
         return [n, 'M']
     
-    def runOptimal(self):
+    def runOptimal(self) -> None:
         for d in self.ref:
         	self.brr.append(self.push(d))
 
@@ -88,12 +93,12 @@ def main() -> None:
     print(ob.brr)
     # print(brr)
     
-    __gcd : int = mt.gcd(ob.hitCount, len(arr)-ob.hitCount)
+    _gcd : int = mt.gcd(ob.hitCount, len(arr)-ob.hitCount)
     
     print()
     print("Total hits: ", ob.hitCount)
     print("Total misses: ", len(arr) - ob.hitCount)
-    print("Hit & Miss Ratio (H:M) = ",  int(ob.hitCount/__gcd), ":", int((len(arr)-ob.hitCount)/__gcd))
+    print("Hit & Miss Ratio (H:M) = ",  int(ob.hitCount/_gcd), ":", int((len(arr)-ob.hitCount)/_gcd))
     print("Hit Percentage = ",  "{:.2f}".format((ob.hitCount*100)/len(arr)), "%")
     
 
