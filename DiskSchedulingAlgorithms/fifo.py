@@ -1,4 +1,4 @@
-def process(self, arr: list, head):
+def process(arr: list, head):
         ans = 0
         for i in range(len(arr)):
             if not i: ans += abs(head-arr[i])
